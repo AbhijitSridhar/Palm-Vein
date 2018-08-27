@@ -1,4 +1,5 @@
 from skimage.feature import hessian_matrix,hessian_matrix_eigvals
+from sklearn.metrics import confusion_matrix
 from localbinarypatterns import LocalBinaryPatterns
 from sklearn.svm import LinearSVC
 from imutils import paths
@@ -45,4 +46,6 @@ for imagePath in paths.list_images(args["testing"]):
     cv2.imshow("Image", image)
     cv2.waitKey(0)
 print("y_true: {} \n y_pred:{}".format(y_true,y_pred))
-print(accuracy_score(y_true,y_pred))
+print("Accuracy using Ridge filter:{}".format(accuracy_score(y_true,y_pred)))
+print("Confusion Matrix:")
+print(confusion_matrix(y_true,y_pred))

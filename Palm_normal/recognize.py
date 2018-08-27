@@ -4,7 +4,7 @@ from sklearn.svm import LinearSVC
 from imutils import paths
 import argparse
 import cv2
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score,confusion_matrix
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-t", "--training", required=True,
@@ -46,4 +46,6 @@ for imagePath in paths.list_images(args["testing"]):
 	cv2.imshow("Image", image)
 	cv2.waitKey(0)
 print("y_true: {} \n y_pred:{}".format(y_true,y_pred))
-print(accuracy_score(y_true,y_pred))
+print("Accuracy without ridge filter:{}".format(accuracy_score(y_true,y_pred)))
+print("Confusion matrix")
+print(confusion_matrix(y_true,y_pred))
